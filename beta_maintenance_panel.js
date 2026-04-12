@@ -15,15 +15,20 @@ Usage: <script src="beta_maintenance_panel.js"></script> */
 
 const SUPPORT_EMAIL = 'bytewavext@gmail.com';
 
-const ensureMaterialIcons = () => { const alreadyLoaded = [...document.styleSheets].some(ss => { try { return ss.href && /fonts.googleapis.com/icon/.test(ss.href); } catch { return false; } });
+const ensureMaterialIcons = () => {
+  const exists = document.querySelector(
+    'link[href*="fonts.googleapis.com/icon"]'
+  );
 
-if (!alreadyLoaded) {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://fonts.googleapis.com/icon?family=Material+Icons+Round';
-  document.head.appendChild(link);
-}
-
+  if (!exists) {
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.href =
+      "https://fonts.googleapis.com/icon?family=Material+Icons+Round";
+    document.head.appendChild(link);
+  }
+}; 
+        
 };
 
 const injectStyles = () => { if (document.getElementById('beta-maintenance-panel-styles')) return;
