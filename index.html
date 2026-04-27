@@ -4,7 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NAMAN AI</title>
-    
+
+    <meta name="description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta name="theme-color" content="#00f3ff">
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+    <link rel="apple-touch-icon" href="./assets/logo.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Naman AI">
+    <meta property="og:description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta property="og:image" content="./assets/og-image.svg">
+    <meta property="og:image:alt" content="Naman AI preview image">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Naman AI">
+    <meta name="twitter:description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta name="twitter:image" content="./assets/og-image.svg">
+    <meta property="og:site_name" content="Naman AI">
+    <meta property="og:url" content="./index.html">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Naman AI">
+    <link rel="preload" href="./assets/logo.svg" as="image" type="image/svg+xml">
+
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
     <script src="https://cdn.tailwindcss.com" onerror="void 0"></script>
     <script>
         // Guard: only run if tailwind CDN loaded (prevents crash when offline/CDN blocked)
@@ -98,6 +126,40 @@
     <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
 
     <style>
+        .app-launch-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at top, rgba(34, 211, 238, 0.22), rgba(2, 6, 23, 0.98));
+            transition: opacity 0.45s ease, visibility 0.45s ease;
+        }
+
+        .app-launch-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .app-launch-inner {
+            width: min(420px, 90vw);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 14px 48px rgba(0, 0, 0, 0.35);
+        }
+
+        .app-launch-brand {
+            width: 54px;
+            height: 54px;
+            margin: 0 auto 0.5rem;
+        }
+
         :root {
             --bg-main: #f0f4f8;
             --text-main: #1e293b;
@@ -796,6 +858,21 @@
     </style>
 </head>
 <body class="w-full flex text-sm selection:bg-neonBlue/20 selection:text-neonBlue overflow-hidden relative">
+    <div id="app-launch-overlay" class="app-launch-overlay" aria-hidden="true">
+        <div class="app-launch-inner">
+            <img class="app-launch-brand" src="./assets/logo.svg" alt="Naman AI logo" loading="eager">
+            <div class="text-neonBlue font-semibold tracking-wide">Launching Naman AI...</div>
+            <div class="text-xs text-slate-300 mt-1">Preparing your AI workspace</div>
+            <lottie-player
+                src="https://lottie.host/e83269bc-3348-4695-b3fd-c992f35f500f/9ZdxVjN7Yk.json"
+                background="transparent"
+                speed="1"
+                style="width: 100%; max-width: 320px; height: 190px; margin: 0.6rem auto 0;"
+                loop
+                autoplay>
+            </lottie-player>
+        </div>
+    </div>
 
 <!-- TOAST CONTAINER -->
 <div id="toast-container"></div>
@@ -5280,6 +5357,44 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250);
 })();
 
+</script>
+
+
+
+<script>
+window.addEventListener("load", () => {
+    const launchOverlay = document.getElementById("app-launch-overlay");
+    if (!launchOverlay) return;
+    setTimeout(() => {
+        launchOverlay.classList.add("hidden");
+    }, 1300);
+});
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", async () => {
+        try {
+            const registration = await navigator.serviceWorker.register("./service-worker.js");
+            registration.addEventListener("updatefound", () => {
+                const newWorker = registration.installing;
+                if (!newWorker) return;
+                newWorker.addEventListener("statechange", () => {
+                    if (newWorker.state === "installed" && navigator.serviceWorker.controller) {
+                        newWorker.postMessage("SKIP_WAITING");
+                    }
+                });
+            });
+        } catch (error) {
+            console.warn("Service worker registration failed:", error);
+        }
+    });
+}
+
+window.addEventListener("beforeinstallprompt", (event) => {
+    event.preventDefault();
+    window.deferredInstallPrompt = event;
+});
 </script>
 
  <script src="beta-panel.js"></script>

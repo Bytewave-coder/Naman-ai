@@ -1,10 +1,30 @@
-
 {
   "name": "Naman AI",
   "short_name": "NamanAI",
+  "description": "Naman AI is a smart assistant for chat, search, and productivity.",
+  "id": "./",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
+  "display_override": ["window-controls-overlay", "standalone"],
+  "orientation": "portrait",
   "background_color": "#000000",
   "theme_color": "#00f3ff",
-  "icons": []
+  "categories": ["productivity", "utilities", "education"],
+  "lang": "en-US",
+  "icons": [
+    {
+      "src": "./assets/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Open Chat",
+      "short_name": "Chat",
+      "url": "./index.html"
+    }
+  ]
 }
