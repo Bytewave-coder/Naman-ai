@@ -4,7 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NAMAN AI</title>
-    
+
+    <meta name="description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta name="theme-color" content="#00f3ff">
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" type="image/svg+xml" href="./assets/logo.svg">
+    <link rel="apple-touch-icon" href="./assets/logo.svg">
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Naman AI">
+    <meta property="og:description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta property="og:image" content="./assets/og-image.svg">
+    <meta property="og:image:alt" content="Naman AI preview image">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Naman AI">
+    <meta name="twitter:description" content="Naman AI is a smart assistant for chat, search, and productivity.">
+    <meta name="twitter:image" content="./assets/og-image.svg">
+
     <script src="https://cdn.tailwindcss.com" onerror="void 0"></script>
     <script>
         // Guard: only run if tailwind CDN loaded (prevents crash when offline/CDN blocked)
@@ -5280,6 +5298,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 250);
 })();
 
+</script>
+
+
+<script>
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./service-worker.js").catch((error) => {
+            console.warn("Service worker registration failed:", error);
+        });
+    });
+}
 </script>
 
  <script src="beta-panel.js"></script>
