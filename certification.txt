@@ -5,10 +5,10 @@ of the Naman AI 1.0
 
 app_name - 						Naman AI
 app_alias - 					namanai
-app_author_name - 				My Company
-app_author_organizational - 	My Company
-app_author_organization - 		My Company
-app_author_locality - 			My Company
+app_author_name - 				bytewave-coder
+app_author_organizational - 	null
+app_author_organization - 		null
+app_author_locality - 			unknown
 app_author_state - 				Delhi
 app_author_country - 			India
 app_password - 					IwYRP9QRlv00
@@ -16,9 +16,7 @@ app_versionName - 				versionName "1.0"
 app_versionCode - 				100
 
 ---------------------------------------------------
-The certification was created by WebIntoApp.com at
+The certification was created by netbeans at
 the Thursday 19th of February 2026 05:03:25 PM
-
-https://webintoapp.com
 ---------------------------------------------------
 
