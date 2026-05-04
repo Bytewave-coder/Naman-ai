@@ -1,0 +1,34 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Gradient for the top, brighter layer -->
+    <linearGradient id="gradientTop" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7F50"/> <!-- Coral -->
+      <stop offset="100%" stop-color="#FFD700"/> <!-- Gold -->
+    </linearGradient>
+    <!-- Gradient for the bottom, darker layer -->
+    <linearGradient id="gradientBottom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6A5ACD"/> <!-- SlateBlue -->
+      <stop offset="100%" stop-color="#40E0D0"/> <!-- Turquoise -->
+    </linearGradient>
+    <!-- Filter for a subtle drop shadow to add depth -->
+    <filter id="depthShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="6"/>
+      <feOffset dx="6" dy="6" result="shadow"/>
+      <feMerge>
+        <feMergeNode in="shadow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- The bottom, slightly darker and offset layer, with a shadow -->
+  <path d="M 40 100 L 160 40 L 160 160 Z"
+        fill="url(#gradientBottom)"
+        filter="url(#depthShadow)"
+        transform="translate(5,5) rotate(-5 100 100)"/>
+
+  <!-- The top, brighter layer, slightly smaller and offset in the opposite direction -->
+  <path d="M 35 95 L 155 35 L 155 155 Z"
+        fill="url(#gradientTop)"
+        transform="translate(-5,-5) rotate(5 100 100)"/>
+</svg>
